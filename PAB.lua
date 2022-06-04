@@ -1016,6 +1016,8 @@ local function PAB_OnLoad(self)
 		iconsperline = 0,
 		xanchor = -88,
 		yanchor = 17,
+        xmargin = 1,
+        ymargin = 1,
 		positions = {
 			{
 				x = 1,
@@ -1156,9 +1158,9 @@ function PAB:CreateOptions()
 		'name', 'Icons per line (0 = all)',
 		'description', 'Adjust x anchor',
 		'minText', '0',
-		'maxText', '10',
+		'maxText', '20',
 		'minValue', 0,
-		'maxValue', 10,
+		'maxValue', 20,
 		'step', 	1,
 		'default', 	0,
 		'current', db.iconsperline,
@@ -1169,10 +1171,10 @@ function PAB:CreateOptions()
 	local xanchor = panel:MakeSlider(
 		'name', 'x anchor',
 		'description', 'Adjust x anchor',
-		'minText', '-100',
-		'maxText', '100',
-		'minValue', -100,
-		'maxValue', 100,
+		'minText', '-500',
+		'maxText', '500',
+		'minValue', -500,
+		'maxValue', 500,
 		'step', 	1,
 		'default', 	0,
 		'current', db.xanchor,
@@ -1183,16 +1185,44 @@ function PAB:CreateOptions()
 	local yanchor = panel:MakeSlider(
 		'name', 'y anchor',
 		'description', 'Adjust x anchor',
-		'minText', '-100',
-		'maxText', '100',
-		'minValue', -100,
-		'maxValue', 100,
+		'minText', '-500',
+		'maxText', '500',
+		'minValue', -500,
+		'maxValue', 500,
 		'step', 	1,
 		'default', 	0,
 		'current', db.yanchor,
 		'setFunc', function(value) db.yanchor = value; PAB:LoadPositions(true) end,
 		'currentTextFunc', function(value) return string.format("%d",value) end)
 	yanchor:SetPoint("TOPLEFT", xanchor, "BOTTOMLEFT", 0, -30)
+    
+    local xmargin = panel:MakeSlider(
+		'name', 'x margin',
+		'description', 'Adjust x-axis margin',
+		'minText', '-100',
+		'maxText', '100',
+		'minValue', -100,
+		'maxValue', 100,
+		'step', 	1,
+		'default', 	0,
+		'current', db.xmargin,
+		'setFunc', function(value) db.xmargin = value; PAB:UpdateAnchors(true) end,
+		'currentTextFunc', function(value) return string.format("%d",value) end)
+	xmargin:SetPoint("TOPLEFT", yanchor, "BOTTOMLEFT", 0, -30)
+    
+    local ymargin = panel:MakeSlider(
+		'name', 'y margin',
+		'description', 'Adjust y-axis margin',
+		'minText', '-100',
+		'maxText', '100',
+		'minValue', -100,
+		'maxValue', 100,
+		'step', 	1,
+		'default', 	0,
+		'current', db.ymargin,
+		'setFunc', function(value) db.ymargin = value; PAB:UpdateAnchors(true) end,
+		'currentTextFunc', function(value) return string.format("%d",value) end)
+	ymargin:SetPoint("TOPLEFT", xmargin, "BOTTOMLEFT", 0, -30)
 
 	-- V: when "movable gets toggled"
 	ApplyMovableFunction = function()
