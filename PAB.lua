@@ -618,9 +618,9 @@ function PAB:AppendIcon(icons,anchor)
 	if #icons == 0 then
 		newicon:SetPoint("TOPLEFT",anchor,"BOTTOMLEFT")
 	elseif db.iconsperline ~= 0 and (#icons % db.iconsperline) == 0 then
-		newicon:SetPoint("TOPLEFT",icons[#icons - db.iconsperline + 1],"BOTTOMLEFT", 0, -1)
+		newicon:SetPoint("TOPLEFT",icons[#icons - db.iconsperline + 1],"BOTTOMLEFT", 0, -db.ymargin)
 	else
-		newicon:SetPoint("LEFT",icons[#icons],"RIGHT", 1, 0)
+		newicon:SetPoint("LEFT",icons[#icons],"RIGHT", db.xmargin, 0)
 	end
 	icons[#icons+1] = newicon
 	return newicon
