@@ -6,7 +6,7 @@ By Vendethiel, Lawz and ManneN. Original by Kollektiv.
 ### Instructions
 
 Don't forget to :
-- Rename the folder from wotlk-partyabilitybars-master to PAB
+- Rename the folder from PartyAbilityBars-master to PAB
 - If you used an older version of PAB, delete former configuration files : WTF/AccountName/SavedVariables/PAB.lua
 - Type `/pab` in-game to open the settings.
 
