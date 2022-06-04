@@ -615,12 +615,18 @@ end
 function PAB:AppendIcon(icons,anchor)
 	local newicon = CreateIcon(anchor)
 	iconlist[#iconlist+1] = newicon
+    
+    local mainpos   = db.growRight  and "TOPLEFT"    or "TOPRIGHT"
+    local secondpos = db.growRight  and "BOTTOMLEFT" or "BOTTOMRIGHT"
+    local thirdpos  = db.growRight  and "LEFT"       or "RIGHT"
+    local fourthpos = db.growRight  and "RIGHT"      or "LEFT"
+    
 	if #icons == 0 then
-		newicon:SetPoint("TOPLEFT",anchor,"BOTTOMLEFT")
+		newicon:SetPoint(mainpos,anchor,secondpos)
 	elseif db.iconsperline ~= 0 and (#icons % db.iconsperline) == 0 then
-		newicon:SetPoint("TOPLEFT",icons[#icons - db.iconsperline + 1],"BOTTOMLEFT", 0, -db.ymargin)
+		newicon:SetPoint(mainpos,icons[#icons - db.iconsperline + 1],secondpos, 0, -db.ymargin)
 	else
-		newicon:SetPoint("LEFT",icons[#icons],"RIGHT", db.xmargin, 0)
+		newicon:SetPoint(thirdpos,icons[#icons], fourthpos, db.xmargin, 0)
 	end
 	icons[#icons+1] = newicon
 	return newicon
@@ -1115,6 +1121,14 @@ function PAB:CreateOptions()
 		'setFunc', function(value) db.scale = value; PAB:ApplyAnchorSettings() end,
 		'currentTextFunc', function(value) return string.format("%.2f",value) end)
 	scale:SetPoint("TOPLEFT",subText,"TOPLEFT",16,-32)
+
+	local grow = panel:MakeToggle(
+	     'name', 'Grow Right',
+	     'description', 'Icons grow to the right. Requires a reload.',
+	     'default', false,
+	     'getFunc', function() return db.growRight end,
+	     'setFunc', function(value) db.growRight = value; PAB:ApplyAnchorSettings() end)
+	grow:SetPoint("TOP",panel,"TOP",10, -5)
 
 	local arena = panel:MakeToggle(
 	     'name', 'Arena',
