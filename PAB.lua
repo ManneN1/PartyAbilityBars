@@ -24,6 +24,8 @@ local iconlist = {}
 local anchors = {}
 local activeGUIDS = {}
 
+local Masque = LibStub("Masque", true)
+
 local function print(...)
 	for i=1,select('#',...) do
 		ChatFrame1:AddMessage("|cff33ff99 PAB|r: " .. select(i,...))
@@ -550,6 +552,14 @@ function PAB:CreateAnchors()
 		local index = anchor:CreateFontString(nil,"ARTWORK","GameFontNormal")
 		index:SetPoint("CENTER")
 		index:SetText(i)
+        
+        if Masque then
+            if not anchor.masqueGroup then
+                local group = Masque:Group("PAB", "Icons")
+                anchor.masqueGroup = group
+            end
+        end
+        
 	end
 end
 
@@ -588,6 +598,16 @@ local function CreateIcon(anchor)
 	texture:SetAllPoints(true)
 	texture:SetTexCoord(0.07,0.9,0.07,0.90)
 	icon.texture = texture
+    
+    if Masque then
+        anchor.masqueGroup:AddButton(icon, 
+        {
+            Cooldown = icon.cd,
+            Gloss = icon.texture,
+            Icon = icon.texture,
+        },
+        nil, true)
+    end
 
 	return icon
 end
@@ -691,6 +711,10 @@ function PAB:UpdateAnchors(updateIcons)
 			end
 		end
 		self:HideUnusedIcons(numIcons,anchor.icons)
+        
+        if Masque then
+            anchor.masqueGroup:ReSkin()
+        end
 	end
 	self:ShowUsedAnchors()
 	self:HideUnusedAnchors()
