@@ -12,7 +12,7 @@ Don't forget to :
 
 ### Notes
 
-This version adds a better configuration UI, more spells, and automatic talents detection (as well as an internal cleanup). Moreover it supports backported version of **[Masque][1]**!
+This version adds a better configuration UI, more spells, and automatic talents detection (as well as an internal cleanup). Moreover it supports the backported version of **[Masque][1]**!
 
 ![Imgur](https://i.imgur.com/WLFR3d3.jpg) ![Imgur](https://i.imgur.com/x6TA6LA.jpg)
 
