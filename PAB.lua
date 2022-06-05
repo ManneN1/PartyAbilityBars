@@ -1106,7 +1106,7 @@ function PAB:CreateOptions()
 	local panel = SO.AddOptionsPanel("PAB", function() end)
 	self.panel = panel
 	SO.AddSlashCommand("PAB","/pab")
-	local title, subText = panel:MakeTitleTextAndSubText("Party Ability Bars","General settings")
+	local title, subText = panel:MakeTitleTextAndSubText("Party Ability Bars","General Settings")
 	
 	local scale = panel:MakeSlider(
 		'name', 'Scale',
@@ -1169,8 +1169,8 @@ function PAB:CreateOptions()
 	lock:SetPoint("LEFT",movable,"RIGHT",50,0)
 
 	local iconsperline = panel:MakeSlider(
-		'name', 'Icons per line (0 = all)',
-		'description', 'Adjust x anchor',
+		'name', 'Icons Per Line (0 = all)',
+		'description', 'Determines how many icons are displayed on each line',
 		'minText', '0',
 		'maxText', '20',
 		'minValue', 0,
@@ -1183,8 +1183,8 @@ function PAB:CreateOptions()
 	iconsperline:SetPoint("TOPLEFT", movable, "BOTTOMLEFT", 0, -20)
 		
 	local xanchor = panel:MakeSlider(
-		'name', 'x anchor',
-		'description', 'Adjust x anchor',
+		'name', 'X Anchor',
+		'description', 'Adjust the X anchor',
 		'minText', '-500',
 		'maxText', '500',
 		'minValue', -500,
@@ -1197,8 +1197,8 @@ function PAB:CreateOptions()
 	xanchor:SetPoint("TOPLEFT", iconsperline, "BOTTOMLEFT", 0, -30)
 	
 	local yanchor = panel:MakeSlider(
-		'name', 'y anchor',
-		'description', 'Adjust x anchor',
+		'name', 'Y Anchor',
+		'description', 'Adjust the Y anchor',
 		'minText', '-500',
 		'maxText', '500',
 		'minValue', -500,
@@ -1211,8 +1211,8 @@ function PAB:CreateOptions()
 	yanchor:SetPoint("TOPLEFT", xanchor, "BOTTOMLEFT", 0, -30)
     
     local xmargin = panel:MakeSlider(
-		'name', 'x margin',
-		'description', 'Adjust x-axis margin',
+		'name', 'X Margin',
+		'description', 'Adjust the X-axis margin',
 		'minText', '-100',
 		'maxText', '100',
 		'minValue', -100,
@@ -1225,8 +1225,8 @@ function PAB:CreateOptions()
 	xmargin:SetPoint("TOPLEFT", yanchor, "BOTTOMLEFT", 0, -30)
     
     local ymargin = panel:MakeSlider(
-		'name', 'y margin',
-		'description', 'Adjust y-axis margin',
+		'name', 'Y Margin',
+		'description', 'Adjust the Y-axis margin',
 		'minText', '-100',
 		'maxText', '100',
 		'minValue', -100,
@@ -1255,7 +1255,7 @@ function PAB:CreateOptions()
 
 	ApplyMovableFunction()
 
-	local title2, subText2 = panel:MakeTitleTextAndSubText("Ability editor","Abilities tracked :")
+	local title2, subText2 = panel:MakeTitleTextAndSubText("Ability Editor")
 	title2:ClearAllPoints()
 	title2:SetPoint("LEFT",panel,"LEFT",16,100)
 	subText2:ClearAllPoints()
@@ -1347,7 +1347,7 @@ function PAB:CreateAbilityEditor()
 	
 	scrollframe:SetWidth(150); 
 	scrollframe:SetHeight(200)
-	scrollframe:SetPoint('LEFT',5,-60)
+	scrollframe:SetPoint('LEFT',5,-20)
 	scrollframe:SetBackdrop(backdrop)
 	scrollframe:SetBackdropColor(.6,.6,.6,0.25)
 	scrollframe:SetScript("OnVerticalScroll", function(self,offset)
@@ -1395,7 +1395,7 @@ function PAB:CreateAbilityEditor()
 			PAB:UpdateScrollBar()
 		end
 	)
-	dropdown:SetPoint("LEFT",scrollframe,"RIGHT",20, 0)
+	dropdown:SetPoint("CENTER",scrollframe,"CENTER",0, -140)
 end
 
 PAB:RegisterEvent("VARIABLES_LOADED")
